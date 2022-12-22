@@ -1,0 +1,79 @@
+﻿@*@model List<HospitalMVC.ResponseModel.DoctorDepartmentModel>*@
+@model HospitalMVC.ResponseModel.HomePageViewModel
+
+<html>
+    <head>
+        <title>Hospital MVC</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <script>
+            function test() {
+                document.getElementById("doctorRow").style.color = "red";
+                var currDate = "@DateTime.Now";
+                document.getElementById("time").innerHTML = currDate;
+            }
+            var rowDiv = document.getElementById("doctorRow");
+            rowDiv.onclick = () => alert("123");
+        </script>
+    </head>
+    
+    <body>
+        <p>MVC Work</p>
+
+        <Button onclick="test()">Click to show time!</Button>
+        <p id="time"> </p>
+
+        <div class="container">
+        <h2 id="baslik"> Doctors Older than average age with Department Name</h2>
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-md-5">Doctor Name</th>
+                    <th class="col-md-1">Age</th>
+                    <th class="col-md-3">Department Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var doctor in Model.DoctorDepartmentModels)
+                {
+                    <tr id ="doctorRow">
+                        <td>@doctor.FullName</td>
+                        <td>@doctor.Age</td>
+                        <td>@doctor.DepartmentName</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        </div>
+        
+
+        <div class="container">
+        <h2> Doctors Older than 30 with Number of Patients</h2>
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class ="col-md-5">Doctor Name</th>
+                    <th class="col-md-1">Age</th>
+                    <th class="col-md-1">Number of Patients</th>
+                    <th class="col-md-3">Department Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var doctor in Model.DoctorListModels)
+                {
+                    <tr>
+                        <td>@doctor.FullName</td>
+                        <td>@doctor.Age</td>
+                        <td>@doctor.NumberOfPatients</td>
+                        <td>@doctor.DepartmentName</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        </div>
+
+
+
+    </body>
+</html>
